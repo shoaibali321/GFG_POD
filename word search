@@ -1,0 +1,29 @@
+class Solution:
+	def isWordExist(self, mat, word):
+		#Code here
+		row,col=len(mat),len(mat[0])
+		def check(i, j, ind, vis):
+            if ind == len(word):
+                return True
+            if i < 0 or j < 0 or i >= row or j >= col or vis[i][j] or mat[i][j] != word[ind]:
+                return False
+            
+            vis[i][j] = True
+            if (check(i, j - 1, ind + 1, vis) or  # left
+                check(i, j + 1, ind + 1, vis) or  # right
+                check(i - 1, j, ind + 1, vis) or  # up
+                check(i + 1, j, ind + 1, vis)):   # down
+                return True
+            
+            vis[i][j] = False
+            return False
+		for i in range(len(mat)):
+		    for j in range(len(mat[0])):
+		        if mat[i][j]==word[0]:
+		            vis=[[False] * col for _ in range(row)]
+		            if check(i,j,0,vis):
+		                return True
+	    return False
+	    
+	    
+	    
