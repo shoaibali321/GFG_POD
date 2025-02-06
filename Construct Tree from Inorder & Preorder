@@ -1,0 +1,25 @@
+class Solution {
+    static int pre;
+    public static Node buildTree(int inorder[], int preorder[]) {
+        // code here
+        pre=0;
+        int n=inorder.length;
+        return tree(inorder,preorder,0,n-1);
+        }
+        static Node tree(int inorder[],int preorder[], int lo, int hi){
+            if(lo>hi){
+                return null;
+            }
+            Node root= new Node(preorder[pre++]);
+            int idx=lo;
+            for(int i=lo;i<=hi;i++){
+                if(inorder[i]==root.data){
+                    idx=i;
+                    break;
+                }            }
+            root.left=tree(inorder,preorder,lo,idx-1);
+            root.right=tree(inorder,preorder,idx+1,hi);
+            return root;
+        }
+        
+    }
