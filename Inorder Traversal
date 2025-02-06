@@ -1,0 +1,17 @@
+class Solution {
+    // Function to return a list containing the inorder traversal of the tree.
+    public void help(Node root,List<Integer>r){
+        if(root==null){
+            return;
+        }
+        help(root.left,r);
+        r.add(root.data);
+        help(root.right,r);
+    }
+    ArrayList<Integer> inOrder(Node root) {
+        // Code
+        ArrayList<Integer> r=new ArrayList<>();
+        help(root,r);
+        return r;
+    }
+}
