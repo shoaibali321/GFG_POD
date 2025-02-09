@@ -8,7 +8,7 @@ class Solution {
         int leftsum=Math.max(0,path(node.left));
         int rightsum=Math.max(0,path(node.right));
         max=Math.max(max,node.data+leftsum+rightsum);
-        return 
+        return node.data+Math.max(leftsum,rightsum);
     }
     
     int findMaxSum(Node node) {
