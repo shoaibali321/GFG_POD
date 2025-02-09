@@ -1,0 +1,19 @@
+class Solution {
+    // Function to return maximum path sum from any node in a tree.
+    int max=Integer.MIN_VALUE;
+    int path(Node node){
+        if(node==null){
+            return 0;
+        }
+        int leftsum=Math.max(0,path(node.left));
+        int rightsum=Math.max(0,path(node.right));
+        max=Math.max(max,node.data+leftsum+rightsum);
+        return 
+    }
+    
+    int findMaxSum(Node node) {
+        // your code goes here
+        path(node);
+        return max;
+    }
+}
