@@ -1,0 +1,39 @@
+class Node {
+    int data;
+    Node left, right;
+
+    public Node(int d) {
+        data = d;
+        left = right = null;
+    }
+}
+*/
+class Solution {
+    void inorder(Node root,ArrayList<Integer> ans){
+        if(root==null){
+            return;
+        }
+        inorder(root.left,ans);
+        ans.add(root.data);
+        inorder(root.right,ans);
+    }
+    boolean findTarget(Node root, int target) {
+        // Write your code here
+        ArrayList<Integer> ans =new ArrayList<>();
+        inorder(root,ans);
+        int start=0;
+        int end=ans.size()-1;
+        while(start<end){
+            if(ans.get(start)+ans.get(end)==target){
+                return true;
+            }
+            else if(ans.get(start)+ans.get(end)<target){
+                start+=1;
+            }
+            else{
+                end-=1;
+            }
+        }
+        return false;
+    }
+}
