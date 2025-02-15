@@ -1,0 +1,34 @@
+class Solution {
+    Node first,sec,prev;
+    void inorder(Node root){
+        if(root==null){
+            return;
+        }
+        inorder(root.left);
+        if(prev!=null && root.data<prev.data){
+            if(first==null){
+                first=prev;
+                sec=root;
+            }
+            else{
+                sec=root;
+            }
+        }
+        prev=root;
+        inorder(root.right);
+    }
+    void swap(){
+        int temp=first.data;
+        first.data=sec.data;
+        sec.data=temp;
+    }
+    void correctBST(Node root) {
+        // code here
+        first=sec=prev=null;
+        inorder(root);
+        if(first!=null && sec!=null){
+            swap();
+        }
+        
+    }
+}
