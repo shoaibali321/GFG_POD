@@ -1,0 +1,40 @@
+class Tree {
+    // Function to serialize a tree and return a list containing nodes of tree.
+    private ArrayList<Integer> inorder(Node root, ArrayList<Integer> arr){
+        if(root==null){
+            return null;
+        }
+        inorder(root.left,arr);
+        arr.add(root.data);
+        inorder(root.right,arr);
+        return arr;
+    }
+    public ArrayList<Integer> serialize(Node root) {
+        // code here
+        ArrayList<Integer> arr=new ArrayList<>();
+        return inorder(root,arr);
+        // return arr;
+    }
+
+    // Function to deserialize a list and construct the tree.
+    
+    private Node buildbst(ArrayList<Integer>arr,int start,int end){
+        if(start>end){
+            return null;
+        }
+        int mid=start+(end-start)/2;
+        Node r=new Node(arr.get(mid));
+        r.left=buildbst(arr,start,mid-1);
+        r.right=buildbst(arr,mid+1,end);
+        return r;
+    } 
+    public Node deSerialize(ArrayList<Integer> arr) {
+        // code here
+        if(arr==null || arr.isEmpty()){
+            return null;
+        }
+        else{
+            return buildbst(arr,0,arr.size()-1);
+        }
+    }
+};
