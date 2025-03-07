@@ -1,0 +1,19 @@
+class Solution:
+    def LCS(self, m,n,s,revs,dp):
+        if(m==0 or n==0):
+            return 0
+        if(dp[m][n]!=-1):
+            return dp[m][n]
+        if(s[m-1]==revs[n-1]):
+            dp[m][n]=1+self.LCS(m-1,n-1,s,revs,dp)
+        else:
+            dp[m][n]=max(self.LCS(m-1,n,s,revs,dp),self.LCS(m,n-1,s,revs,dp))
+        return dp[m][n]
+
+    def longestPalinSubseq(self, s):
+        # code here
+        revs=s[::-1]
+        m=len(s)
+        n=len(revs)
+        dp=[[-1]*(n+1) for _ in range(m+1)]
+        return self.LCS(m,n,s,revs,dp)
