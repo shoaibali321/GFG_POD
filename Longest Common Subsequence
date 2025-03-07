@@ -1,0 +1,22 @@
+class Solution:
+    # def __init__(self):
+    #     self.dp=[]
+    def LCS(self,m,n,s1,s2,dp):
+        if(m==0 or n==0):
+            return 0
+        if(dp[m][n]!=-1):
+            return dp[m][n]
+        if(s1[m-1]==s2[n-1]):
+            dp[m][n]=1+self.LCS(m-1,n-1,s1,s2,dp)
+        else:
+            dp[m][n]=max(self.LCS(m-1,n,s1,s2,dp),self.LCS(m,n-1,s1,s2,dp))
+        return dp[m][n]
+
+    
+    
+    def lcs(self, s1, s2):
+        # code here
+        m=len(s1)
+        n=len(s2)
+        dp=[[-1]*(n+1) for _ in range(m+1)]
+        return self.LCS(m,n,s1,s2,dp)
