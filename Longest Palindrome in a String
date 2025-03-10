@@ -1,0 +1,25 @@
+class Solution:
+    def longestPalindrome(self, s):
+        # code here
+        if len(s)<=1:
+            return s
+        LPS=""
+        for i in range(0,len(s)):
+            lo=i
+            hi=i
+            # odd length check
+            while((lo>=0 and hi<len(s)) and s[lo]==s[hi]):
+                if hi-lo+1> len(LPS):
+                    LPS=s[lo:hi+1]
+                lo-=1
+                hi+=1
+            lo=i
+            hi=i+1
+            # Even length check
+            while (lo>=0 and hi<len(s))and s[lo]==s[hi]:
+                if hi-lo+1>len(LPS):
+                    LPS=s[lo:hi+1]
+                lo-=1
+                hi+=1
+
+        return LPS
