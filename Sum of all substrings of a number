@@ -1,0 +1,14 @@
+### Python code
+
+class Solution:
+    def sumSubstrings(self,s):
+        # code here
+        t=0
+        pre=0
+        # c=0
+        for i in range(len(s)):
+            n=int(s[i])
+            c=(i+1)*n+(10*pre)
+            t+=c
+            pre=c
+        return t
