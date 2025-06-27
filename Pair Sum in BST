@@ -20,8 +20,8 @@ class Solution {
     boolean findTarget(Node root, int target) {
         // Write your code here
         ArrayList<Integer> ans =new ArrayList<>();
-        inorder(root,ans);
-        int start=0;
+        inorder(root,ans);  // inorder traversal gives the sorted order of the tree
+        int start=0;        // find the sum of pair by two pointers
         int end=ans.size()-1;
         while(start<end){
             if(ans.get(start)+ans.get(end)==target){
