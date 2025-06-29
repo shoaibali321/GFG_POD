@@ -1,0 +1,47 @@
+// java
+class Solution {
+    // Helper function to find the kth smallest element
+    public int smallkth(Node root, int k, int[] c) {
+        if (root == null) {
+            return -1;
+        }
+
+        int left = smallkth(root.left, k, c);
+        if (left != -1) {
+            return left;
+        }
+
+        c[0]++;
+        if (c[0] == k) {
+            return root.data;
+        }
+
+        int right = smallkth(root.right, k, c);
+        return right;
+    }
+
+    // Main function to call the helper
+    public int kthSmallest(Node root, int k) {
+        int[] c = new int[1]; // Array to act like a mutable counter
+        return smallkth(root, k, c);
+    }
+}
+// python
+class Solution:
+    def smallkth(self, root,k,c):
+        if root is None:
+            return -1
+        left=self.smallkth(root.left,k,c)
+        if left!=-1:
+            return left
+        c[0]+=1
+        if c[0]==k:
+            return root.data
+        right=self.smallkth(root.right,k,c)
+        return right
+        
+    # Return the kth smallest element in the given BST 
+    def kthSmallest(self, root, k): 
+        #code here.
+        c=[0]
+        return self.smallkth(root,k,c)
